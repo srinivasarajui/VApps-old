@@ -1,0 +1,70 @@
+<section data-ng-controller="ProjectsController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>{{project.name}} - Panel Types <a class="btn btn-primary pull-right" data-ng-click="update()">Done</a>
+        </h1>
+
+    </div>
+    <div class="col-md-12">
+        <form name="newPanelTypesForm" ng-submit="addPanelType()" novalidate>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>LamType</th>
+                        <th>Board</th>
+                        <th>Lam1 Color</th>
+                        <th>Lam2 Color</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                    <tr>
+                        <td ng-class="{'has-error': newPanelTypesForm.newCode.$invalid && submitted}">
+                            <input type="" e="text" name="newCode" class="form-control" ng-model="newCode" size="30" placeholder="Enter Panel Type Code" required>
+                            <span class="help-block" ng-show="newPanelTypesForm.newCode.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newPanelTypesForm.newLamType.$invalid  && submitted}">
+                            <select ng-model="newLamType" class="form-control" placeholder="Enter Lam Type" name="newLamType" required>
+                                <option value="preLam">PreLamination</option>
+                                <option value="postLam">Post Lamination</option>
+                            </select>
+                            <span class="help-block" ng-show="newPanelTypesForm.newLamType.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newPanelTypesForm.newBaseBoard.$invalid && submitted}">
+                            <input type="text" class="form-control" ng-model="newBaseBoard" size="30" placeholder="Enter Base board" name="newBaseBoard" required>
+                            <span class="help-block" ng-show="newPanelTypesForm.newBaseBoard.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newPanelTypesForm.newLam1Color.$invalid && submitted}">
+                            <input class="form-control" type="text" ng-model="newLam1Color" size="30" placeholder="Enter lam1 Color" name="newLam1Color" required>
+                            <span class="help-block" ng-show="newPanelTypesForm.newLam1Color.$error.required &&  submitted">Required</span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model="newLam2Color" size="30" placeholder="Enter lam1 Color">
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" type="submit"> <i class="glyphicon glyphicon-plus-sign"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tfoot>
+                <tbody>
+                    <tr ng-repeat="panelType in project.panelTypes">
+                        <td>{{panelType.code}}</td>
+                        <td>{{panelType.lamType}}</td>
+                        <td>{{panelType.baseBoard}}</td>
+                        <td>{{panelType.lam1Color}}</td>
+                        <td>{{panelType.lam2Color}}</td>
+                        <td>
+                            <a class="btn btn-warning" data-ng-click="removePanelType($index);">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+    </div>
+</section>

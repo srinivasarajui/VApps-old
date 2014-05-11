@@ -1,0 +1,308 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fu",
+				"function"
+			],
+			[
+				"c",
+				"code"
+			],
+			[
+				"pro",
+				"project"
+			],
+			[
+				"pr",
+				"project"
+			],
+			[
+				"id",
+				"_id"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"t",
+				"thead	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 75.0,
+		"selected_items":
+		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: re",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Data/Development/code/meanjs/VApps/config/env/all.js",
+		"/Data/Development/code/meanjs/test1/public/modules/projects/config/projects.client.config.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/list.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/panelTypes.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/panels.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/controllers/projects.js",
+		"/Data/Development/code/meanjs/VApps/app/models/project.js",
+		"/Data/Development/code/meanjs/VApps/app/controllers/projects.js",
+		"/Data/Development/code/meanjs/VApps/app/models/user.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/create.html",
+		"/Data/Development/Old/Code/git/VTS/app/models/article.js",
+		"/Data/Development/Old/Code/git/VTS/app/models/boxTransfer.js",
+		"/Data/Development/Old/Code/git/VTS/app/models/stock.js",
+		"/Data/Development/Old/Code/git/VTS/app/controllers/transaction.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/config/routes.js",
+		"/Data/Development/Old/Code/git/VTS/public/views/transaction/edit.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/core/views/header.html",
+		"/Data/Development/code/meanjs/VApps/public/js/config.js",
+		"/home/srin/.config/sublime-text-3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/Data/Development/code/meanjs/VApps/app/views/layout.html",
+		"/Data/Development/code/meanjs/VApps/bower.json",
+		"/home/srin/.config/sublime-text-3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/Data/Development/Old/Code/git/VTS/app/models/transaction.js",
+		"/Data/Development/Old/Code/git/VTS/app/models/internalTransfer.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/core/controllers/header.js",
+		"/Data/Development/Old/code/meanjs/public/modules/core/controllers/header.js",
+		"/Data/Development/Old/code/meanjs/public/modules/core/config/routes.js",
+		"/Data/Development/code/meanio/VApps/packages/cutlist/app.js",
+		"/Data/Development/code/meanio/VApps/packages/cutlist/public/config/routes.js",
+		"/Data/Development/code/meanio/VApps/packages/cutlist/server/routes/cutlist.js",
+		"/Data/Development/code/meanio/VApps/packages/cutlist/public/controllers/cutlist.js",
+		"/Data/Development/code/meanio/VApps/server/config/system/bootstrap.js",
+		"/Data/Development/code/meanio/VApps/server/config/env/test.js",
+		"/Data/Development/code/meanio/VApps/server/config/env/production.js",
+		"/Data/Development/code/meanio/VApps/server/config/env/development.js",
+		"/Data/Development/code/meanio/VApps/packages/panels/public/controllers/panels.js",
+		"/Data/Development/code/meanio/VApps/packages/projpanelrequirment/app.js",
+		"/Data/Development/code/VTS/app/controllers/users.js",
+		"/Data/Development/code/VTS/public/modules/users/views/Users/edit.html",
+		"/Data/Development/code/VTS/public/modules/users/config/routes.js",
+		"/Data/Development/code/VTS/public/modules/users/views/Users/list.html",
+		"/Data/Development/code/VTS/public/modules/users/views/Users/create.html",
+		"/Data/Development/code/VTS/public/modules/users/services/users.js",
+		"/Data/Development/code/VTS/public/modules/core/controllers/header.js",
+		"/Data/Development/code/VTS/public/modules/users/controllers/managerUsers.js",
+		"/Data/Development/code/VTS/app/models/user.js",
+		"//Data/Development/code/VSample/public/modules/articles/services/articles.js",
+		"//Data/Development/code/VSample/public/modules/articles/controllers/articles.js",
+		"//Data/Development/code/VSample/public/modules/articles/views/list.html",
+		"/Data/Development/code/VTS/app/routes/users.js",
+		"/Data/Development/code/VTS/public/modules/core/views/header.html",
+		"/Data/Development/code/VTS/public/modules/users/views/signup.html",
+		"/Data/Development/code/VTS/public/modules/users/views/signin.html",
+		"/Data/Development/code/VTS/config/express.js",
+		"/Data/Development/code/VTS/app/views/layout.html",
+		"/Data/Development/code/VTS/app/views/500.html",
+		"/Data/Development/code/VTS/config/env/development.js",
+		"/Data/Development/code/VTS/config/env/production.js",
+		"/Data/Development/code/VTS/config/env/test.js",
+		"/Data/Development/code/VTS/config/env/travis.js",
+		"/Data/Development/code/VApps/packages/stock/public/config/routes.js",
+		"/Data/Development/code/VApps/packages/stock/public/controllers/transactions.js",
+		"/Data/Development/code/VApps/packages/stock/public/controllers/stocks.js",
+		"/Data/Development/code/VApps/packages/stock/app.js",
+		"/Data/Development/code/VApps/public/system/controllers/header.js",
+		"/Data/Development/code/VApps/packages/stock/server/routes/stock.js",
+		"/Data/Development/code/VApps/public/articles/controllers/articles.js",
+		"/Data/Development/code/VApps/packages/stock/server/models/stock.js",
+		"/Data/Development/code/VApps/server/config/passport.js",
+		"/Data/Development/code/VApps/packages/stock/server/models/boxTransfer.js",
+		"/Data/Development/code/VApps/packages/stock/server/models/transaction.js",
+		"/Data/Development/code/VApps/packages/stock/server/models/internalTransfer.js",
+		"/Data/Development/code/VApps/packages/stock/server/common/params.js",
+		"/Data/Development/code/VApps/server/routes/users.js",
+		"/Data/Development/code/VApps/packages/stock/package.json",
+		"/Data/Development/code/VApps/public/auth/views/index.html",
+		"/Data/Development/code/VApps/server/views/users/auth.html",
+		"/Data/Development/code/VApps/server/config/env/test.js",
+		"/Data/Development/code/VApps/server/config/env/production.js",
+		"/Data/Development/code/VApps/server/config/env/development.js",
+		"/Data/Development/code/VApps/server/config/env/all.js",
+		"/Data/Development/code/VApps/server/config/system/bootstrap.js",
+		"/Data/Development/code/VApps/bower.json",
+		"/Data/Development/code/VApps/README.md",
+		"/Data/Development/code/VApps/package.json",
+		"/Data/Development/code/VApps/server/views/includes/head.html",
+		"/Data/Development/code/VApps/public/system/views/header.html"
+	],
+	"find":
+	{
+		"height": 63.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Data/Development/code/meanjs/public",
+			"/Data/Development/code/VTS/public",
+			"/Data/Development/code/VApps/public,/Data/Development/code/VApps/server",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"get",
+			"newPanelTypesForm",
+			"addRoom",
+			"$stateProvider",
+			"art",
+			"ArticlesController",
+			"ManagerUsersController",
+			"settings/accounts",
+			"transactionInedit",
+			"Articles",
+			"menus",
+			"menus.add",
+			"menu",
+			"TwitterStrategy",
+			"menu"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"newPanelsForm",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 112.0
+	},
+	"project": "VApps.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 236.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

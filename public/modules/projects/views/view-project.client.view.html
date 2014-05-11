@@ -1,0 +1,40 @@
+<section data-ng-controller="ProjectsController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>{{project.name}}</h1>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Usage in Sq Mtrs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="panelType in project.panelTypes">
+                    <td>{{panelType.code}}</td>
+                    <td>{{panelType.usage/1000000}}</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="pull-right" data-ng-show="authentication.user._id == project.user._id">
+        <a class="btn btn-primary" href="/#!/projects/{{project._id}}/panelTypes">
+            Manage Panel Types
+        </a>
+        <a class="btn btn-primary" href="/#!/projects/{{project._id}}/panels">
+            Manage Panels
+        </a>
+        <a class="btn btn-primary" href="/#!/projects/{{project._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <small>
+        <em class="text-muted">Posted on {{project.created | date:'mediumDate'}} by {{project.user.displayName}}</em>
+    </small>
+</section>

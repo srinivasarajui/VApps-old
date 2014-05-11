@@ -1,0 +1,134 @@
+<section data-ng-controller="ProjectsController" data-ng-init="LoadPanels()">
+    <div class="page-header">
+        <h1>{{project.name}} - Panels
+            <a class="btn btn-primary pull-right" data-ng-click="update()">Done</i></a>
+        </h1>
+    </div>
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <label for="room" class="col-sm-1 control-label">Room</label>
+                <div class="col-sm-3" ng-show="selectRoom">
+                    <label>{{selectedRoom.name}}</label>
+                </div>
+                <div class="col-sm-2" ng-show="selectRoom">
+                    <a class="btn btn-primary" data-ng-click="changeRoom();">Change Room</a>
+                </div>
+                <div class="col-sm-3" ng-show="!addRoom && !selectRoom">
+                    <select ng-model="selectedRoom" class="form-control" placeholder="room" name="room" id="room" ng-options="r.name for r in project.rooms"></select>
+                </div>
+                <div class="col-sm-2" ng-show="!addRoom && !selectRoom">
+                    <a class="btn btn-primary" data-ng-click="selectRooms();">Select Room</a>
+                </div>
+                <div class="col-sm-2" ng-show="!addRoom && !selectRoom">
+                    <a class="btn btn-primary" data-ng-click="newRoom();">Add New Room</a>
+                </div>
+                <form novalidate data-ng-submit="saveRoom()" name="addRoomForm" ng-show="addRoom">
+                    <div class="col-sm-3" ng-class="{'has-error': addRoomForm.newRoomName.$invalid && newRoomSubmitted}">
+                        <input type="text" class="form-control" ng-model="newRoomName" size="30" placeholder="Enter Room Name" name="newRoomName" required>
+                        <span class="help-block" ng-show="addRoomForm.newRoomName.$error.required && newRoomSubmitted">Required</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-primary" type="submit"> <i class="glyphicon glyphicon-plus-sign"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br/>
+        <div class="row" ng-show="selectRoom">
+            <div class="col-md-12">
+                <label for="item" class="col-sm-1 control-label">Item</label>
+                <div class="col-sm-3" ng-show="selectItem">
+                    <label>{{selectedItem.name}}</label>
+                </div>
+                <div class="col-sm-2" ng-show="selectItem">
+                    <a class="btn btn-primary" data-ng-click="changeItem();">Change Item</a>
+                </div>
+                <div class="col-sm-3" ng-show="!addItem && !selectItem">
+                    <select ng-model="selectedItem" class="form-control" placeholder="item" name="item" id="item" ng-options="r.name for r in selectedRoom.items"></select>
+                </div>
+                <div class="col-sm-2" ng-show="!addItem && !selectItem">
+                    <a class="btn btn-primary" data-ng-click="selectItems();">Select Item</a>
+                </div>
+                <div class="col-sm-2" ng-show="!addItem && !selectItem">
+                    <a class="btn btn-primary" data-ng-click="newItem();">Add New Item</a>
+                </div>
+                <form novalidate data-ng-submit="saveItem()" name="addItemForm" ng-show="addItem">
+                    <div class="col-sm-3" ng-class="{'has-error': addItemForm.newItemName.$invalid && newItemSubmitted}">
+                        <input type="text" class="form-control" ng-model="newItemName" size="30" placeholder="Enter Item Name" name="newItemName" required>
+                        <span class="help-block" ng-show="addItemForm.newItemName.$error.required && newItemSubmitted">Required</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-primary" type="submit"> <i class="glyphicon glyphicon-plus-sign"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="selectItem">
+        <div class="col-md-12">
+            <form name="newPanelsForm" ng-submit="addPanel()" novalidate>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>Qty</th>
+                            <th>Panel Type</th>
+                            <th>Comments</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+
+                        <tr>
+                            <td ng-class="{'has-error': newPanelsForm.newX.$invalid && submitted}">
+                                <input type="text" name="newX" class="form-control" ng-model="newX" size="5" placeholder="X" required>
+                                <span class="help-block" ng-show="newPanelsForm.newX.$error.required && submitted">Required</span>
+                            </td>
+                            <td ng-class="{'has-error': newPanelsForm.newY.$invalid && submitted}">
+                                <input type="text" name="newY" class="form-control" ng-model="newY" size="5" placeholder="Y" required>
+                                <span class="help-block" ng-show="newPanelsForm.newY.$error.required && submitted">Required</span>
+                            </td>
+                            <td ng-class="{'has-error': newPanelsForm.newQty.$invalid && submitted}">
+                                <input type="text" name="newQty" class="form-control" ng-model="newQty" size="5" placeholder="Qty" required>
+                                <span class="help-block" ng-show="newPanelsForm.newQty.$error.required && submitted">Required</span>
+                            </td>
+                            <td ng-class="{'has-error': newPanelsForm.newPanelType.$invalid  && submitted}">
+                                <select ng-model="newPanelType" class="form-control" placeholder="Enter Panel Type" name="newPanelType" ng-options="r.code for r in project.panelTypes" required>
+
+                                </select>
+                                <span class="help-block" ng-show="newPanelsForm.newLamType.$error.required && submitted">Required</span>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" ng-model="newComments" size="30" placeholder="Any Comments">
+                            </td>
+                            <td>
+                                <button class="btn btn-primary" type="submit"> <i class="glyphicon glyphicon-plus-sign"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tfoot>
+                    <tbody>
+                        <tr ng-repeat="panel in selectedItem.Panels">
+                            <td>{{panel.x}}</td>
+                            <td>{{panel.y}}</td>
+                            <td>{{panel.qty}}</td>
+                            <td>{{panel.panelTypeCode}}</td>
+                            <td>{{panel.comments}}</td>
+                            <td>
+                                <a class="btn btn-warning" data-ng-click="removePanel($index);">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</section>
