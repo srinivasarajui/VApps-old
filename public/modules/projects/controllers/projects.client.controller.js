@@ -66,7 +66,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 projectId: $stateParams.projectId
             }, function(project) {
                 populateTypeCode(project);
-                console.log(project.EBUsage);
+
                 $scope.chaged = false;
                 $scope.project = project;
 
@@ -78,7 +78,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 projectId: $stateParams.projectId
             }, function(project) {
                 populateTypeCode(project);
-                console.log(project.EBUsage);
+
                 $scope.chaged = false;
                 $scope.submitted = false;
                 $scope.project = project;
@@ -218,8 +218,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 if (!$scope.project.panelTypes) {
                     $scope.project.panelTypes = [];
                 }
-                console.log($scope.newLamType);
-
                 $scope.project.panelTypes.push({
                     code: $scope.newCode,
                     lamType: $scope.newLamType,
