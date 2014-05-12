@@ -21,6 +21,9 @@
         </table>
     </div>
     <div class="pull-right" data-ng-show="authentication.user._id == project.user._id">
+        <a class="btn btn-primary" href="/#!/projects/{{project._id}}/ebTypes">
+            Manage Edge Band Types
+        </a>
         <a class="btn btn-primary" href="/#!/projects/{{project._id}}/panelTypes">
             Manage Panel Types
         </a>
@@ -34,7 +37,4 @@
             <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
-    <small>
-        <em class="text-muted">Posted on {{project.created | date:'mediumDate'}} by {{project.user.displayName}}</em>
-    </small>
 </section>

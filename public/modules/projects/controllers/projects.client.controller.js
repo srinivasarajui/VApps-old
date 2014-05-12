@@ -65,7 +65,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             Projects.get({
                 projectId: $stateParams.projectId
             }, function(project) {
-                populatePanelTypeCode(project);
+                populateTypeCode(project);
                 $scope.chaged = false;
                 $scope.project = project;
 
@@ -76,7 +76,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             Projects.get({
                 projectId: $stateParams.projectId
             }, function(project) {
-                populatePanelTypeCode(project);
+                populateTypeCode(project);
                 $scope.chaged = false;
                 $scope.submitted = false;
                 $scope.project = project;
@@ -188,6 +188,8 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                     qty: $scope.newQty,
                     panelType: $scope.newPanelType._id,
                     panelTypeCode: $scope.newPanelType.code,
+                    ebType: $scope.newEBType._id,
+                    ebTypeCode: $scope.newEBType.code,
                     comments: $scope.newComments
                 });
                 addUsageBoard($scope.newPanelType, $scope.selectedItem.Panels[$scope.selectedItem.Panels.length - 1]);
@@ -200,7 +202,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             }
         };
         $scope.removePanel = function(index) {
-            console.log('Remove' + index);
+
             var type = getPanelType($scope.selectedItem.Panels[index].panelType, $scope.project);
             $scope.chaged = true;
             removeUsageBoard(type, $scope.selectedItem.Panels[index]);
@@ -245,12 +247,59 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
         };
 
+        /*---------------------*/
+        $scope.addEBType = function() {
+            $scope.submitted = true;
+            if ($scope.newEBTypesForm.$valid) {
+                if (!$scope.project.ebTypes) {
+                    $scope.project.ebTypes = [];
+                }
+
+                $scope.project.ebTypes.push({
+                    code: $scope.newEBCode,
+                    l1Thickness: $scope.nL1Tk,
+                    l1Color: $scope.newL1Color,
+                    w1Thickness: $scope.nW1Tk,
+                    w1Color: $scope.newW1Color,
+                    l2Thickness: $scope.nL2Tk,
+                    l2Color: $scope.newL2Color,
+                    w2Thickness: $scope.nW2Tk,
+                    w2Color: $scope.newW2Color,
+                });
+
+                $scope.chaged = true;
+                $scope.newEBCode = null;
+                $scope.nL1Tk = null;
+                $scope.newL1Color = null;
+                $scope.nW1Tk = null;
+                $scope.newW1Color = null;
+                $scope.nL2Tk = null;
+                $scope.newL2Color = null;
+                $scope.nW2Tk = null;
+                $scope.newW2Color = null;
+                $scope.submitted = false;
+            }
+        };
+        $scope.removeEBType = function(index) {
+            if (!$scope.project.ebTypes[index].usageL1) {
+                $scope.project.ebTypes[index].usageL1 = 0;
+            }
+            if ($scope.project.panelTypes[index].usageL1 === 0) {
+                $scope.chaged = true;
+                $scope.project.panelTypes.splice(index, 1);
+            } else {
+                toaster.pop('failure', 'Unable to Remove', 'Unable to Remove the Edge Band Type as it is used in panles');
+            }
+
+
+        };
+        /*--*/
 
         function saveProject() {
 
             if ($scope.chaged) {
                 $scope.project.$update(function() {
-                    console.log('Test');
+
                     $scope.chaged = false;
                     toaster.pop('success', 'Saved', 'Saved Project to backend');
 
@@ -259,19 +308,18 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             }
         }
 
-        function populatePanelTypeCode(project) {
+        function populateTypeCode(project) {
             for (var i = project.rooms.length - 1; i >= 0; i--) {
                 for (var j = project.rooms[i].items.length - 1; j >= 0; j--) {
                     for (var k = project.rooms[i].items[j].Panels.length - 1; k >= 0; k--) {
                         var type = getPanelType(project.rooms[i].items[j].Panels[k].panelType, project);
                         addUsageBoard(type, project.rooms[i].items[j].Panels[k]);
                         project.rooms[i].items[j].Panels[k].panelTypeCode = type.code;
+                        type = getEbType(project.rooms[i].items[j].Panels[k].ebType, project);
+                        project.rooms[i].items[j].Panels[k].ebTypeCode = type.code;
                     }
                 }
             }
-
-
-
         }
 
         function addUsageBoard(type, panel) {
@@ -289,16 +337,37 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
         }
 
         function getPanelType(id, project) {
-            console.log('in' + id);
+
             for (var i = project.panelTypes.length - 1; i >= 0; i--) {
-                console.log('out' + project.panelTypes[i]._id);
-
-
                 if (project.panelTypes[i]._id === id)
                     return project.panelTypes[i];
             }
             return null;
         }
+
+        function getEbType(id, project) {
+            for (var i = project.ebTypes.length - 1; i >= 0; i--) {
+                if (project.ebTypes[i]._id === id)
+                    return project.ebTypes[i];
+            }
+            return null;
+        }
+        $scope.getThicknessText = function(code) {
+            var returnValue = '';
+            if (code === '0') {
+                returnValue = 'NO EB';
+            }
+            if (code === '5') {
+                returnValue = '0.5 mm';
+            }
+            if (code === '8') {
+                returnValue = '0.8 mm';
+            }
+            if (code === '20') {
+                returnValue = '2.0 mm';
+            }
+            return returnValue;
+        };
 
     }
 ]);

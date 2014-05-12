@@ -77,6 +77,7 @@
                             <th>Y</th>
                             <th>Qty</th>
                             <th>Panel Type</th>
+                            <th>EB Type</th>
                             <th>Comments</th>
                             <th>Actions</th>
                         </tr>
@@ -100,7 +101,13 @@
                                 <select ng-model="newPanelType" class="form-control" placeholder="Enter Panel Type" name="newPanelType" ng-options="r.code for r in project.panelTypes" required>
 
                                 </select>
-                                <span class="help-block" ng-show="newPanelsForm.newLamType.$error.required && submitted">Required</span>
+                                <span class="help-block" ng-show="newPanelsForm.newPanelType.$error.required && submitted">Required</span>
+                            </td>
+                            <td ng-class="{'has-error': newPanelsForm.newEBType.$invalid  && submitted}">
+                                <select ng-model="newEBType" class="form-control" placeholder="Enter EB Type" name="newEBType" ng-options="r.code for r in project.ebTypes" required>
+
+                                </select>
+                                <span class="help-block" ng-show="newPanelsForm.newEBType.$error.required && submitted">Required</span>
                             </td>
                             <td>
                                 <input type="text" class="form-control" ng-model="newComments" size="30" placeholder="Any Comments">
@@ -118,6 +125,7 @@
                             <td>{{panel.y}}</td>
                             <td>{{panel.qty}}</td>
                             <td>{{panel.panelTypeCode}}</td>
+                            <td>{{panel.ebTypeCode}}</td>
                             <td>{{panel.comments}}</td>
                             <td>
                                 <a class="btn btn-warning" data-ng-click="removePanel($index);">
