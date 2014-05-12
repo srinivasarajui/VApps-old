@@ -12,6 +12,7 @@
                         <th>Code</th>
                         <th>LamType</th>
                         <th>Board</th>
+                        <th>Thickness</th>
                         <th>Lam1 Color</th>
                         <th>Lam2 Color</th>
                         <th>Actions</th>
@@ -25,15 +26,19 @@
                             <span class="help-block" ng-show="newPanelTypesForm.newCode.$error.required && submitted">Required</span>
                         </td>
                         <td ng-class="{'has-error': newPanelTypesForm.newLamType.$invalid  && submitted}">
-                            <select ng-model="newLamType" class="form-control" placeholder="Enter Lam Type" name="newLamType" required>
-                                <option value="preLam">PreLamination</option>
-                                <option value="postLam">Post Lamination</option>
+                            <select ng-model="newLamType" class="form-control" placeholder="Enter Lam Type" name="newLamType" id="newLamType" required>
+                                <option value="pre">preLam</option>
+                                <option value="post">postLam</option>
                             </select>
                             <span class="help-block" ng-show="newPanelTypesForm.newLamType.$error.required && submitted">Required</span>
                         </td>
                         <td ng-class="{'has-error': newPanelTypesForm.newBaseBoard.$invalid && submitted}">
                             <input type="text" class="form-control" ng-model="newBaseBoard" size="30" placeholder="Enter Base board" name="newBaseBoard" required>
                             <span class="help-block" ng-show="newPanelTypesForm.newBaseBoard.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newPanelTypesForm.newThickness.$invalid && submitted}">
+                            <input type="text" class="form-control" ng-model="newThickness" size="30" placeholder="Enter Thickness" name="newThickness" required>
+                            <span class="help-block" ng-show="newPanelTypesForm.newThickness.$error.required && submitted">Required</span>
                         </td>
                         <td ng-class="{'has-error': newPanelTypesForm.newLam1Color.$invalid && submitted}">
                             <input class="form-control" type="text" ng-model="newLam1Color" size="30" placeholder="Enter lam1 Color" name="newLam1Color" required>
@@ -52,8 +57,9 @@
                 <tbody>
                     <tr ng-repeat="panelType in project.panelTypes">
                         <td>{{panelType.code}}</td>
-                        <td>{{panelType.lamType}}</td>
+                        <td>{{getLamText(panelType.lamType)}}</td>
                         <td>{{panelType.baseBoard}}</td>
+                        <td>{{panelType.thickness}}</td>
                         <td>{{panelType.lam1Color}}</td>
                         <td>{{panelType.lam2Color}}</td>
                         <td>

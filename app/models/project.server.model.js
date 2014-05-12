@@ -80,6 +80,12 @@ var PanelTypeSchema = new Schema({
         required: 'Please Base Board',
         trim: true
     },
+    thickness: {
+        type: String,
+        default: '',
+        required: 'Please thickness',
+        trim: true
+    },
     lam1Color: {
         type: String,
         default: '',

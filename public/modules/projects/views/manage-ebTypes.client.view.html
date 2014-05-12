@@ -1,0 +1,117 @@
+<section data-ng-controller="ProjectsController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>{{project.name}} - Edge Band Types <a class="btn btn-primary pull-right" data-ng-click="update()">Done</a>
+        </h1>
+
+    </div>
+    <div class="col-md-12">
+        <form name="newEBTypesForm" ng-submit="addEBType()" novalidate>
+            <table class="table table-striped">
+                <thead>
+
+                    <tr>
+                        <th>Code</th>
+                        <th>Length 1 Thickness</th>
+                        <th>Length 1 color</th>
+                        <th>Width 1 Thickness</th>
+                        <th>Width 1 color</th>
+                        <th>Length 2 Thickness</th>
+                        <th>Length 2 color</th>
+                        <th>Width 2 Thickness</th>
+                        <th>Width 2 color</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+
+                    <tr>
+                        <td ng-class="{'has-error': newEBTypesForm.newEBCode.$invalid && submitted}">
+                            <input type="text" name="newEBCode" class="form-control" ng-model="newEBCode" size="30" placeholder="Enter EB Type Code" required>
+                            <span class="help-block" ng-show="newEBTypesForm.newEBCode.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newL1Thickness.$invalid  && submitted}">
+                            <select ng-model="newL1Thickness" class="form-control" placeholder="Enter Length 1 Thickness" name="newL1Thickness" required>
+
+                                <option value="5">0.5 mm</option>
+                                <option value="8">0.8 mm</option>
+                                <option value="20">2.0 mm</option>
+                                <option value="0">NO EB</option>
+                            </select>
+                            <span class="help-block" ng-show="newEBTypesForm.newL1Thickness.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newL1Color.$invalid && submitted}">
+                            <input type="text" class="form-control" ng-model="newL1Color" size="30" placeholder="Enter Length 1 Color" name="newL1Color" required>
+                            <span class="help-block" ng-show="newEBTypesForm.newL1Color.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newW1Thickness.$invalid  && submitted}">
+                            <select ng-model="newW1Thickness" class="form-control" placeholder="Enter Width 1 Thickness" name="newW1Thickness" required>
+
+                                <option value="5">0.5 mm</option>
+                                <option value="8">0.8 mm</option>
+                                <option value="20">2.0 mm</option>
+                                <option value="0">NO EB</option>
+                            </select>
+                            <span class="help-block" ng-show="newEBTypesForm.newW1Thickness.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newW1Color.$invalid && submitted}">
+                            <input type="text" class="form-control" ng-model="newW1Color" size="30" placeholder="Enter Width 1 Color" name="newW1Color" required>
+                            <span class="help-block" ng-show="newEBTypesForm.newW1Color.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newL2Thickness.$invalid  && submitted}">
+                            <select ng-model="newL2Thickness" class="form-control" placeholder="Enter Length 2 Thickness" name="newL2Thickness" required>
+
+                                <option value="5">0.5 mm</option>
+                                <option value="8">0.8 mm</option>
+                                <option value="20">2.0 mm</option>
+                                <option value="0">NO EB</option>
+                            </select>
+                            <span class="help-block" ng-show="newEBTypesForm.newL2Thickness.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newL2Color.$invalid && submitted}">
+                            <input type="text" class="form-control" ng-model="newL2Color" size="30" placeholder="Enter Length 2 Color" name="newL2Color" required>
+                            <span class="help-block" ng-show="newEBTypesForm.newL2Color.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newW2Thickness.$invalid  && submitted}">
+                            <select ng-model="newW2Thickness" class="form-control" placeholder="Enter Width 2 Thickness" name="newW2Thickness" required>
+
+                                <option value="5">0.5 mm</option>
+                                <option value="8">0.8 mm</option>
+                                <option value="20">2.0 mm</option>
+                                <option value="0">NO EB</option>
+                            </select>
+                            <span class="help-block" ng-show="newEBTypesForm.newW2Thickness.$error.required && submitted">Required</span>
+                        </td>
+                        <td ng-class="{'has-error': newEBTypesForm.newW2Color.$invalid && submitted}">
+                            <input type="text" class="form-control" ng-model="newW2Color" size="30" placeholder="Enter Width 2 Color" name="newW2Color" required>
+                            <span class="help-block" ng-show="newEBTypesForm.newW2Color.$error.required && submitted">Required</span>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" type="submit"> <i class="glyphicon glyphicon-plus-sign"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tfoot>
+                <tbody>
+                    <tr ng-repeat="ebType in project.ebTypes">
+                        <td>{{ebType.code}}</td>
+                        <td>{{getThicknessText(ebType.l1Thickness)}}</td>
+                        <td>{{ebType.l1Color}}</td>
+                        <td>{{getThicknessText(ebType.w1Thickness)}}</td>
+                        <td>{{ebType.w1Color}}</td>
+                        <td>{{getThicknessText(ebType.l2Thickness)}}</td>
+                        <td>{{ebType.l2Color}}</td>
+                        <td>{{getThicknessText(ebType.w2Thickness)}}</td>
+                        <td>{{ebType.w2Color}}</td>
+                        <td>
+                            <a class="btn btn-warning" data-ng-click="removeEBType($index);">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+    </div>
+</section>

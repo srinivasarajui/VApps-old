@@ -216,10 +216,13 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 if (!$scope.project.panelTypes) {
                     $scope.project.panelTypes = [];
                 }
+                console.log($scope.newLamType);
+
                 $scope.project.panelTypes.push({
                     code: $scope.newCode,
                     lamType: $scope.newLamType,
                     baseBoard: $scope.newBaseBoard,
+                    thickness: $scope.newThickness,
                     lam1Color: $scope.newLam1Color,
                     lam2Color: $scope.newLam2Color
                 });
@@ -228,6 +231,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 $scope.newCode = null;
                 $scope.newLamType = null;
                 $scope.newBaseBoard = null;
+                $scope.newThickness = null;
                 $scope.newLam1Color = null;
                 $scope.newLam2Color = null;
                 $scope.submitted = false;
@@ -257,25 +261,25 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
                 $scope.project.ebTypes.push({
                     code: $scope.newEBCode,
-                    l1Thickness: $scope.nL1Tk,
+                    l1Thickness: $scope.newL1Thickness,
                     l1Color: $scope.newL1Color,
-                    w1Thickness: $scope.nW1Tk,
+                    w1Thickness: $scope.newW1Thickness,
                     w1Color: $scope.newW1Color,
-                    l2Thickness: $scope.nL2Tk,
+                    l2Thickness: $scope.newL2Thickness,
                     l2Color: $scope.newL2Color,
-                    w2Thickness: $scope.nW2Tk,
+                    w2Thickness: $scope.newW2Thickness,
                     w2Color: $scope.newW2Color,
                 });
 
                 $scope.chaged = true;
                 $scope.newEBCode = null;
-                $scope.nL1Tk = null;
+                $scope.newL1Thickness = null;
                 $scope.newL1Color = null;
-                $scope.nW1Tk = null;
+                $scope.newW1Thickness = null;
                 $scope.newW1Color = null;
-                $scope.nL2Tk = null;
+                $scope.newL2Thickness = null;
                 $scope.newL2Color = null;
-                $scope.nW2Tk = null;
+                $scope.newW2Thickness = null;
                 $scope.newW2Color = null;
                 $scope.submitted = false;
             }
@@ -351,6 +355,17 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                     return project.ebTypes[i];
             }
             return null;
+        }
+        $scope.getLamText = function(code) {
+            var returnValue = '';
+            if (code === 'pre') {
+                returnValue = 'Pre Lam';
+            }
+            if (code === 'post') {
+                returnValue = 'Post';
+            }
+            return returnValue;
+
         }
         $scope.getThicknessText = function(code) {
             var returnValue = '';
