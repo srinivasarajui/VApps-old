@@ -2,7 +2,8 @@
     <div class="page-header">
         <h1>{{project.name}}</h1>
     </div>
-    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-4">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -20,6 +21,30 @@
             </tbody>
         </table>
     </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Width</th>
+                    <th>Thickness</th>
+                    <th>Color</th>
+                    <th>Length</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="usage in project.EBUsages">
+                    <td>{{usage.width}}</td>
+                    <td>{{getThicknessText(usage.thickness)}}</td>
+                    <td>{{usage.color}}</td>
+                    <td>{{usage.length/1000}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
     <div class="pull-right" data-ng-show="authentication.user._id == project.user._id">
         <a class="btn btn-primary" href="/#!/projects/{{project._id}}/ebTypes">
             Manage Edge Band Types

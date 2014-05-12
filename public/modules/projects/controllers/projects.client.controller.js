@@ -1,8 +1,8 @@
 'use strict';
 
 // Projects controller
-angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Projects', 'toaster',
-    function($scope, $stateParams, $location, Authentication, Projects, toaster) {
+angular.module('projects').controller('ProjectsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Projects', 'toaster', '_',
+    function($scope, $stateParams, $location, Authentication, Projects, toaster, _) {
         $scope.authentication = Authentication;
 
         // Create new Project
@@ -66,6 +66,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 projectId: $stateParams.projectId
             }, function(project) {
                 populateTypeCode(project);
+                console.log(project.EBUsage);
                 $scope.chaged = false;
                 $scope.project = project;
 
@@ -77,6 +78,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 projectId: $stateParams.projectId
             }, function(project) {
                 populateTypeCode(project);
+                console.log(project.EBUsage);
                 $scope.chaged = false;
                 $scope.submitted = false;
                 $scope.project = project;
@@ -298,6 +300,33 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
         };
         /*--*/
+        $scope.getLamText = function(code) {
+            var returnValue = '';
+            if (code === 'pre') {
+                returnValue = 'Pre Lam';
+            }
+            if (code === 'post') {
+                returnValue = 'Post';
+            }
+            return returnValue;
+
+        };
+        $scope.getThicknessText = function(code) {
+            var returnValue = '';
+            if (code === '0') {
+                returnValue = 'NO EB';
+            }
+            if (code === '5') {
+                returnValue = '0.5 mm';
+            }
+            if (code === '8') {
+                returnValue = '0.8 mm';
+            }
+            if (code === '20') {
+                returnValue = '2.0 mm';
+            }
+            return returnValue;
+        };
 
         function saveProject() {
 
@@ -316,11 +345,13 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             for (var i = project.rooms.length - 1; i >= 0; i--) {
                 for (var j = project.rooms[i].items.length - 1; j >= 0; j--) {
                     for (var k = project.rooms[i].items[j].Panels.length - 1; k >= 0; k--) {
-                        var type = getPanelType(project.rooms[i].items[j].Panels[k].panelType, project);
-                        addUsageBoard(type, project.rooms[i].items[j].Panels[k]);
-                        project.rooms[i].items[j].Panels[k].panelTypeCode = type.code;
-                        type = getEbType(project.rooms[i].items[j].Panels[k].ebType, project);
-                        project.rooms[i].items[j].Panels[k].ebTypeCode = type.code;
+                        var panelType = getPanelType(project.rooms[i].items[j].Panels[k].panelType, project);
+                        addUsageBoard(panelType, project.rooms[i].items[j].Panels[k]);
+
+                        project.rooms[i].items[j].Panels[k].panelTypeCode = panelType.code;
+                        var ebType = getEbType(project.rooms[i].items[j].Panels[k].ebType, project);
+                        project.rooms[i].items[j].Panels[k].ebTypeCode = ebType.code;
+                        addUsageEB(ebType, panelType, project.rooms[i].items[j].Panels[k], project);
                     }
                 }
             }
@@ -340,6 +371,44 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             type.usage = type.usage - (panel.x * panel.y * panel.qty);
         }
 
+        function addUsageEB(ebType, panelType, panel, project) {
+            var width = panelType.thickness;
+            changeUsageEBSide(project, width, ebType.l1Thickness, ebType.l1Color, panel.x * panel.qty);
+            changeUsageEBSide(project, width, ebType.l2Thickness, ebType.l2Color, panel.x * panel.qty);
+            changeUsageEBSide(project, width, ebType.w1Thickness, ebType.w1Color, panel.y * panel.qty);
+            changeUsageEBSide(project, width, ebType.w2Thickness, ebType.w2Color, panel.y * panel.qty);
+        }
+
+        function removeUsageEB(ebType, panelType, panel, project) {
+            var width = panelType.thickness;
+            changeUsageEBSide(project, width, ebType.l1Thickness, ebType.l1Color, -1 * panel.x * panel.qty);
+            changeUsageEBSide(project, width, ebType.l2Thickness, ebType.l2Color, -1 * panel.x * panel.qty);
+            changeUsageEBSide(project, width, ebType.w1Thickness, ebType.w1Color, -1 * panel.y * panel.qty);
+            changeUsageEBSide(project, width, ebType.w2Thickness, ebType.w2Color, -1 * panel.y * panel.qty);
+        }
+
+        function changeUsageEBSide(project, width, thickness, color, length) {
+            if (!project.EBUsages) {
+                project.EBUsages = [];
+            }
+            var eb = _.find(project.EBUsages, function(usage) {
+                return usage.width === width && usage.thickness === thickness && usage.color === color;
+            });
+            if (!eb) {
+                eb = {
+                    width: width,
+                    thickness: thickness,
+                    color: color,
+                    length: 0
+                };
+                project.EBUsages.push(eb);
+            }
+
+            eb.length = eb.length + length;
+        }
+
+
+        
         function getPanelType(id, project) {
 
             for (var i = project.panelTypes.length - 1; i >= 0; i--) {
@@ -356,33 +425,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             }
             return null;
         }
-        $scope.getLamText = function(code) {
-            var returnValue = '';
-            if (code === 'pre') {
-                returnValue = 'Pre Lam';
-            }
-            if (code === 'post') {
-                returnValue = 'Post';
-            }
-            return returnValue;
 
-        }
-        $scope.getThicknessText = function(code) {
-            var returnValue = '';
-            if (code === '0') {
-                returnValue = 'NO EB';
-            }
-            if (code === '5') {
-                returnValue = '0.5 mm';
-            }
-            if (code === '8') {
-                returnValue = '0.8 mm';
-            }
-            if (code === '20') {
-                returnValue = '2.0 mm';
-            }
-            return returnValue;
-        };
 
     }
 ]);
