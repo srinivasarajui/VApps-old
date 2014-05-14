@@ -86,16 +86,22 @@
 
                         <tr>
                             <td ng-class="{'has-error': newPanelsForm.newX.$invalid && submitted}">
-                                <input type="text" name="newX" class="form-control" ng-model="newX" size="5" placeholder="X" required>
-                                <span class="help-block" ng-show="newPanelsForm.newX.$error.required && submitted">Required</span>
+                                <input type="number"  min="0" name="newX" class="form-control" ng-model="newX" size="5" placeholder="X" required>
+                                <span class="help-block" ng-show="newPanelsForm.newX.$error.required && submitted"> Number Required</span>
+                                
+                                <span class="help-block" ng-show="newPanelsForm.newX.$error.min && submitted">Should be positive</span>
                             </td>
                             <td ng-class="{'has-error': newPanelsForm.newY.$invalid && submitted}">
-                                <input type="text" name="newY" class="form-control" ng-model="newY" size="5" placeholder="Y" required>
-                                <span class="help-block" ng-show="newPanelsForm.newY.$error.required && submitted">Required</span>
+                                <input type="number"  min="0" name="newY" class="form-control" ng-model="newY" size="5" placeholder="Y" required>
+                                <span class="help-block" ng-show="newPanelsForm.newY.$error.required && submitted">Number Required</span>
+                               
+                                <span class="help-block" ng-show="newPanelsForm.newY.$error.min && submitted">Should be positive</span>
                             </td>
                             <td ng-class="{'has-error': newPanelsForm.newQty.$invalid && submitted}">
-                                <input type="text" name="newQty" class="form-control" ng-model="newQty" size="5" placeholder="Qty" required>
-                                <span class="help-block" ng-show="newPanelsForm.newQty.$error.required && submitted">Required</span>
+                                <input type="number"  min="0" name="newQty" class="form-control" ng-model="newQty" size="5" placeholder="Qty" required>
+                                <span class="help-block" ng-show="newPanelsForm.newQty.$error.required && submitted">Number Required</span>
+                               
+                                <span class="help-block" ng-show="newPanelsForm.newQty.$error.min && submitted">Should be positive</span>
                             </td>
                             <td ng-class="{'has-error': newPanelsForm.newPanelType.$invalid  && submitted}">
                                 <select ng-model="newPanelType" class="form-control" placeholder="Enter Panel Type" name="newPanelType" ng-options="r.code for r in project.panelTypes" required>

@@ -5,11 +5,16 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
     function($scope, $stateParams, $location, Authentication, Projects, toaster, _) {
         $scope.authentication = Authentication;
 
+        /*    Project Main Code  -- Begin */
         // Create new Project
         $scope.create = function() {
             // Create new Project object
             var project = new Projects({
-                name: this.name
+                name: this.name,
+                custName: this.custName,
+                siteAddress: this.siteAddress,
+                carpenterName: this.carpenterName,
+                status: 'active'
             });
 
             // Redirect after save
@@ -19,6 +24,9 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
             // Clear form fields
             this.name = '';
+            this.custName = '';
+            this.siteAddress = '';
+            this.carpenterName = '';
         };
 
         // Remove existing Project
@@ -32,24 +40,23 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                     }
                 }
             } else {
+                console.log('Found');
                 $scope.project.$remove(function() {
+                    console.log('Remove');
                     $location.path('projects');
                 });
             }
         };
 
         // Update existing Project
-        $scope.update = function() {
+        $scope.updateProjectDetails = function() {
             var project = $scope.project;
-            if ($scope.chaged) {
-                project.$update(function() {
-                    $location.path('projects/' + project._id);
-                    $scope.chaged = false;
-                    toaster.pop('success', 'Saved', 'Saved Project to backend');
-                });
-            } else {
+            project.$update(function() {
                 $location.path('projects/' + project._id);
-            }
+                $scope.chaged = false;
+                updateReferencesAndUsage(project);
+                toaster.pop('success', 'Saved', 'Saved Project to backend');
+            });
         };
 
         // Find a list of Projects
@@ -65,19 +72,20 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             Projects.get({
                 projectId: $stateParams.projectId
             }, function(project) {
-                populateTypeCode(project);
+                updateReferencesAndUsage(project);
 
                 $scope.chaged = false;
                 $scope.project = project;
 
             });
         };
-
+        /*    Project Main Code  -- END */
+        /*    Panels Section Code  -- BEGIN */
         $scope.LoadPanels = function() {
             Projects.get({
                 projectId: $stateParams.projectId
             }, function(project) {
-                populateTypeCode(project);
+                updateReferencesAndUsage(project);
 
                 $scope.chaged = false;
                 $scope.submitted = false;
@@ -138,7 +146,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                 $scope.addRoom = false;
             }
         };
-        /*--------------------*/
+
         $scope.selectItems = function() {
             if ($scope.selectedItem) {
                 $scope.selectItem = true;
@@ -175,8 +183,6 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             }
         };
         /*------------------------*/
-
-
         $scope.addPanel = function() {
             $scope.submitted = true;
             if ($scope.newPanelsForm.$valid) {
@@ -194,7 +200,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                     ebTypeCode: $scope.newEBType.code,
                     comments: $scope.newComments
                 });
-                addUsageBoard($scope.newPanelType, $scope.selectedItem.Panels[$scope.selectedItem.Panels.length - 1]);
+
                 $scope.chaged = true;
                 $scope.newX = null;
                 $scope.newY = null;
@@ -207,11 +213,13 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
             var type = getPanelType($scope.selectedItem.Panels[index].panelType, $scope.project);
             $scope.chaged = true;
-            removeUsageBoard(type, $scope.selectedItem.Panels[index]);
+
             $scope.selectedItem.Panels.splice(index, 1);
 
         };
-        /*---------------------*/
+        /*    Panels Section Code  -- END */
+
+        /*    Panel Types Section Code  -- BEGIN */
         $scope.addPanelType = function() {
             $scope.submitted = true;
             if ($scope.newPanelTypesForm.$valid) {
@@ -250,8 +258,9 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
 
         };
+        /*    Panel Types Section Code  -- END */
 
-        /*---------------------*/
+        /*    EB Types Section Code  -- BEGIN */
         $scope.addEBType = function() {
             $scope.submitted = true;
             if ($scope.newEBTypesForm.$valid) {
@@ -285,19 +294,43 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             }
         };
         $scope.removeEBType = function(index) {
-            if (!$scope.project.ebTypes[index].usageL1) {
-                $scope.project.ebTypes[index].usageL1 = 0;
+            var unused = true;
+            for (var i = $scope.project.rooms.length - 1; i >= 0; i--) {
+                for (var j = $scope.project.rooms[i].items.length - 1; j >= 0; j--) {
+                    for (var k = $scope.project.rooms[i].items[j].Panels.length - 1; k >= 0; k--) {
+                        if ($scope.project.rooms[i].items[j].Panels[k].ebType === $scope.project.ebTypes[index]._id) {
+                            unused = false;
+                            break;
+                        }
+                    }
+                }
             }
-            if ($scope.project.panelTypes[index].usageL1 === 0) {
+            if (unused) {
                 $scope.chaged = true;
-                $scope.project.panelTypes.splice(index, 1);
+                $scope.project.ebTypes.splice(index, 1);
             } else {
                 toaster.pop('failure', 'Unable to Remove', 'Unable to Remove the Edge Band Type as it is used in panles');
             }
 
 
         };
-        /*--*/
+        /*    EB Types Section Code  -- END */
+
+        /*    Common Code  -- BEGIN */
+        // Update existing Project
+        $scope.update = function() {
+            var project = $scope.project;
+            if ($scope.chaged) {
+                project.$update(function() {
+                    $location.path('projects/' + project._id);
+                    $scope.chaged = false;
+                    toaster.pop('success', 'Saved', 'Saved Project to backend');
+                });
+            } else {
+                $location.path('projects/' + project._id);
+            }
+        };
+
         $scope.getLamText = function(code) {
             var returnValue = '';
             if (code === 'pre') {
@@ -333,13 +366,18 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
                     $scope.chaged = false;
                     toaster.pop('success', 'Saved', 'Saved Project to backend');
+                    updateReferencesAndUsage($scope.project);
 
                 });
 
             }
         }
 
-        function populateTypeCode(project) {
+        function updateReferencesAndUsage(project) {
+            for (var i = $scope.project.panelTypes.length - 1; i >= 0; i--) {
+                $scope.project.panelTypes[i].usage = 0;
+            };
+            project.EBUsages = [];
             for (var i = project.rooms.length - 1; i >= 0; i--) {
                 for (var j = project.rooms[i].items.length - 1; j >= 0; j--) {
                     for (var k = project.rooms[i].items[j].Panels.length - 1; k >= 0; k--) {
@@ -362,12 +400,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             type.usage = type.usage + (panel.x * panel.y * panel.qty);
         }
 
-        function removeUsageBoard(type, panel) {
-            if (!type.usage) {
-                type.usage = 0;
-            }
-            type.usage = type.usage - (panel.x * panel.y * panel.qty);
-        }
+
 
         function addUsageEB(ebType, panelType, panel, project) {
             var width = panelType.thickness;
@@ -377,13 +410,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
             changeUsageEBSide(project, width, ebType.w2Thickness, ebType.w2Color, panel.y * panel.qty);
         }
 
-        function removeUsageEB(ebType, panelType, panel, project) {
-            var width = panelType.thickness;
-            changeUsageEBSide(project, width, ebType.l1Thickness, ebType.l1Color, -1 * panel.x * panel.qty);
-            changeUsageEBSide(project, width, ebType.l2Thickness, ebType.l2Color, -1 * panel.x * panel.qty);
-            changeUsageEBSide(project, width, ebType.w1Thickness, ebType.w1Color, -1 * panel.y * panel.qty);
-            changeUsageEBSide(project, width, ebType.w2Thickness, ebType.w2Color, -1 * panel.y * panel.qty);
-        }
+
 
         function changeUsageEBSide(project, width, thickness, color, length) {
             if (!project.EBUsages) {
@@ -406,7 +433,7 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
         }
 
 
-        
+
         function getPanelType(id, project) {
 
             for (var i = project.panelTypes.length - 1; i >= 0; i--) {

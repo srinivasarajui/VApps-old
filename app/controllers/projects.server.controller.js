@@ -80,9 +80,14 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 	var project = req.project;
-
-	project.remove(function(err) {
+	//Marking Deleted Items
+	project = _.extend(project, req.body);
+	project.Deleted = true;
+	//project.DeletedOn = Date.now;//TODO Stamp System date
+	project.DeletedBy = req.user;
+	project.save(function(err) {
 		if (err) {
+
 			return res.send(400, {
 				message: getErrorMessage(err)
 			});
@@ -90,13 +95,23 @@ exports.delete = function(req, res) {
 			res.jsonp(project);
 		}
 	});
+	/*project.remove(function(err) {
+		if (err) {
+			return res.send(400, {
+				message: getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(project);
+		}
+	});*/
 };
 
 /**
  * List of Projects
  */
 exports.list = function(req, res) {
-	Project.find().sort('-created').populate('user', 'displayName').exec(function(err, projects) {
+	
+	Project.find({Deleted:false}).sort('-created').populate('user', 'displayName').exec(function(err, projects) {
 		if (err) {
 			return res.send(400, {
 				message: getErrorMessage(err)
@@ -123,8 +138,10 @@ exports.projectByID = function(req, res, next, id) {
  * Project authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
+	/*
+	Removed as All users are authorised to see all the projects
 	if (req.project.user.id !== req.user.id) {
 		return res.send(403, 'User is not authorized');
-	}
+	}*/
 	next();
 };

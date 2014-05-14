@@ -160,9 +160,46 @@ var ProjectSchema = new Schema({
         required: 'Please fill Project name',
         trim: true
     },
+    custName: {
+        type: String,
+        default: '',
+        required: 'Please fill Customer name',
+        trim: true
+    },
+    siteAddress: {
+        type: String,
+        default: '',
+        required: 'Please fill Site Address',
+        trim: true
+    },
+    carpenterName: {
+        type: String,
+        default: '',
+        required: 'Please fill Carpenter name',
+        trim: true
+    },
+   status: {
+        type: String,
+        default: '',
+        required: 'Please enter status',
+        trim: true
+    },
     ebTypes: [ebTypeSchema],
     panelTypes: [PanelTypeSchema],
     rooms: [RoomSchema],
+
+    Deleted:{
+        type:Boolean,
+        default:false
+    },
+    DeletedOn: {
+        type: Date
+       
+    },
+    DeletedBy: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
 
     created: {
         type: Date,
