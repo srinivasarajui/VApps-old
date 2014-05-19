@@ -81,7 +81,19 @@ var UserSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	}
+	},
+	Deleted:{
+        type:Boolean,
+        default:false
+    },
+    DeletedOn: {
+        type: Date
+       
+    },
+    DeletedBy: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    }
 });
 
 /**
@@ -136,4 +148,24 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	});
 };
 
-mongoose.model('User', UserSchema);
+//INIT Admin User
+var User = mongoose.model('User', UserSchema);
+User.find().exec(function(err, users) {
+    if (err) {
+        console.error(err);
+    } else {
+        if(!users || users.length ===0){
+            var admin = new User();
+            admin.firstName = 'Admin';
+            admin.lastName = 'Admin';
+            admin.password = 'password@1';
+            admin.email='admin@vesar.in';
+            admin.username='admin';
+            admin.roles=['ADMIN'];
+            admin.provider='local';
+            admin.save(function(err) {console.error(err); });
+            
+        }
+    }
+});
+

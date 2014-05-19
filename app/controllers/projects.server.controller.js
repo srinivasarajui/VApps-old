@@ -83,7 +83,7 @@ exports.delete = function(req, res) {
 	//Marking Deleted Items
 	project = _.extend(project, req.body);
 	project.Deleted = true;
-	//project.DeletedOn = Date.now;//TODO Stamp System date
+	project.DeletedOn = Date.now();//TODO Stamp System date
 	project.DeletedBy = req.user;
 	project.save(function(err) {
 		if (err) {

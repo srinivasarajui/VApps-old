@@ -1,0 +1,39 @@
+<section data-ng-controller="AdminUserController" data-ng-init="find()">
+<div class="page-header">
+        <h1>Users
+            <a class="btn btn-primary pull-right" href="/#!/admin-user/create">Create a New User</a>
+        </h1>
+    </div>
+    
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+
+                <tr>
+                    <th>Display Name</th>
+
+                    <th width="10%">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users" ng-animate="'animate'">
+                    <td>{{user.displayName}}</td>
+
+                    <td>
+                        <a class="btn btn-primary" href="/#!/admin-user/{{user._id}}/edit">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                         <a class="btn btn-primary" data-ng-click="remove(user);">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-warning text-center" data-ng-hide="!users.$resolved || users.length">
+        No Users yet, why don't you <a href="/#!/admin-user/create">create one</a>?
+    </div>
+</section>

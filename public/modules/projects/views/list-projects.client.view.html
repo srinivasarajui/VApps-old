@@ -4,13 +4,16 @@
             <a class="btn btn-primary pull-right" href="/#!/projects/create">Create a New Project</a>
         </h1>
     </div>
-    <div class="col-md-12">
-    <label class="control-label pull-right" for="status">Status</label>
-    <select ng-model="status" class="form-control pull-right" placeholder="Enter Status" name="status" required>
-                                <option value="active">Active</option>
-                                <option value="completed">Completed</option>
-                                <option value="hold">Hold</option>
-                            </select>
+    <div class="col-md-12 ">
+        <div class="controls form-inline  pull-right">
+            <label class="control-label" for="status">Status</label>
+            <select  class="form-control" ng-model="displayedStatus" placeholder="Enter Status" name="status" required>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+                <option value="hold">Hold</option>
+            </select>
+        </div>
+       
     </div>
     <div class="col-md-12">
         <table class="table table-striped">
@@ -23,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="project in projects " ng-animate="'animate'">
+                <tr ng-repeat="project in projects | filter:{status:displayedStatus}" ng-animate="'animate'">
                     <td>{{project.name}}</td>
 
                     <td>

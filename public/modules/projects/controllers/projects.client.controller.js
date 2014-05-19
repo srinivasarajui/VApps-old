@@ -61,9 +61,11 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
 
         // Find a list of Projects
         $scope.find = function() {
+              $scope.displayedStatus = 'active';
             Projects.query(function(projects) {
                 $scope.projects = projects;
                 $scope.chaged = false;
+
             });
         };
 
@@ -374,9 +376,13 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
         }
 
         function updateReferencesAndUsage(project) {
-            for (var i = $scope.project.panelTypes.length - 1; i >= 0; i--) {
-                $scope.project.panelTypes[i].usage = 0;
-            };
+            if (!project.panelTypes) {
+                project.panelTypes = [];
+            } else {
+                for (var p = project.panelTypes.length - 1; p >= 0; p--) {
+                    project.panelTypes[p].usage = 0;
+                }
+            }
             project.EBUsages = [];
             for (var i = project.rooms.length - 1; i >= 0; i--) {
                 for (var j = project.rooms[i].items.length - 1; j >= 0; j--) {
