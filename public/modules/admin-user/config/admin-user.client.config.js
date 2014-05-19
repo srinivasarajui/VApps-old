@@ -1,7 +1,7 @@
 'use strict';
 
 // Admin user module config
-angular.module('admin-user').run(['Menus','Authentication','_'
+angular.module('admin-user').run(['Menus','Authentication','_',
 	function(Menus,Authentication,_) {
 		// Config logic 
 		// ...
