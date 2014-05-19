@@ -161,7 +161,7 @@ User.find().exec(function(err, users) {
             admin.password = 'password@1';
             admin.email='admin@vesar.in';
             admin.username='admin';
-            admin.roles=['ADMIN'];
+            admin.roles=['ADMIN','user'];
             admin.provider='local';
             admin.save(function(err) {console.error(err); });
             

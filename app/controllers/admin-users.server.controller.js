@@ -42,7 +42,10 @@ exports.create = function(req, res) {
     // Add missing user fields
     user.provider = 'local';
     user.displayName = user.firstName + ' ' + user.lastName;
-
+    if(!user.roles)
+    {
+        user.roles = ['user']
+    }
     user.save(function(err) {
         if (err) {
             return res.send(400, {
@@ -155,7 +158,9 @@ exports.hasAuthorization = function(req, res, next) {
 	if (req.project.user.id !== req.user.id) {
 		return res.send(403, 'User is not authorized');
 	}*/
-    if(_.find(req.user.roles,function(role) {
+    console.log(req.user.roles);
+    
+    if(!_.find(req.user.roles,function(role) {
   return role === 'ADMIN';
 }))
     {
