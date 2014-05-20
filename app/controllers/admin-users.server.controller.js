@@ -64,7 +64,7 @@ exports.create = function(req, res) {
  * Show the current Admin user
  */
 exports.read = function(req, res) {
-    res.jsonp(req.user);
+    res.jsonp(req.cuser);
 };
 
 /**
@@ -72,7 +72,7 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
 
-    var user = req.user;
+    var user = req.cuser;
 
     user = _.extend(user, req.body);
     // Add missing user fields
@@ -97,7 +97,7 @@ exports.update = function(req, res) {
  */
 exports.delete = function(req, res) {
 
-    var user = req.user;
+    var user = req.cuser;
     //Marking Deleted Items
     user = _.extend(user, req.body);
     user.Deleted = true;
@@ -158,7 +158,7 @@ exports.hasAuthorization = function(req, res, next) {
 	if (req.project.user.id !== req.user.id) {
 		return res.send(403, 'User is not authorized');
 	}*/
-    console.log(req.user.roles);
+    console.log(req.user);
     
     if(!_.find(req.user.roles,function(role) {
   return role === 'ADMIN';
@@ -177,7 +177,7 @@ exports.userByID = function(req, res, next, id) {
     User.findById(id).exec(function(err, user) {
         if (err) return next(err);
         if (!user) return next(new Error('Failed to load Project ' + id));
-        req.user = user;
+        req.cuser = user;
         next();
     });
 };
