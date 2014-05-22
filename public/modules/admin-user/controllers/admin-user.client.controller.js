@@ -8,6 +8,7 @@ angular.module('admin-user').controller('AdminUserController', ['$scope','$state
         $scope.find = function() {
             AdminUsers.query(function(users) {
                 $scope.users = users;
+               
             });
         };
 

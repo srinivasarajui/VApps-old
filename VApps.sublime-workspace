@@ -4,12 +4,32 @@
 		"selected_items":
 		[
 			[
-				"fu",
-				"function"
+				"ro",
+				"roles"
+			],
+			[
+				"pa",
+				"panles"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"eb",
+				"ebType"
+			],
+			[
+				"a",
+				"align	Attr"
 			],
 			[
 				"c",
-				"code"
+				"colspan	Attr"
+			],
+			[
+				"fu",
+				"function"
 			],
 			[
 				"pro",
@@ -24,10 +44,6 @@
 				"_id"
 			],
 			[
-				"l",
-				"log"
-			],
-			[
 				"co",
 				"console"
 			],
@@ -39,6 +55,39 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "public/modules/admin-user/views/admin-user.client.view.html",
+			"settings":
+			{
+				"buffer_size": 1371,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/modules/admin-user/css/admin-user.css",
+			"settings":
+			{
+				"buffer_size": 91,
+				"line_ending": "Unix",
+				"name": ".gridStyle {"
+			}
+		},
+		{
+			"file": "public/modules/admin-user/controllers/admin-user.client.controller.js",
+			"settings":
+			{
+				"buffer_size": 2608,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/modules/admin-user/admin-user.client.module.js",
+			"settings":
+			{
+				"buffer_size": 133,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -76,7 +125,71 @@
 	},
 	"file_history":
 	[
+		"//Data/Development/code/meanjs/VApps/bower.json",
+		"//Data/Development/code/meanjs/VApps/public/modules/admin-user/config/admin-user.client.config.js",
+		"//Data/Development/code/meanjs/VApps/public/modules/admin-user/admin-user.client.module.js",
+		"//Data/Development/code/meanjs/VApps/public/modules/projects/css/project.css",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/manage-ebTypes.client.view.html",
+		"//Data/Development/code/meanjs/VApps/public/modules/projects/views/manage-panelTypes.client.view.html",
+		"//Data/Development/code/meanjs/VApps/public/modules/projects/projects.client.module.js",
+		"/Data/Development/code/meanjs/VApps/app/controllers/admin-users.server.controller.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/config/admin-user.client.config.js",
+		"/Data/Development/code/meanjs/VApps/app/controllers/projects.server.controller.js",
+		"//Data/Software/SugarCE-Full-6.5.16/install/populateSeedData.php",
+		"//Data/Software/SugarCE-Full-6.5.16/install/data/disc_client.php",
+		"//Data/Software/SugarCE-Full-6.5.16/examples/ExampleLeadCapture.php",
+		"/Data/Development/code/meanjs/VApps/public/modules/core/controllers/home.client.controller.js",
+		"/Data/Development/code/meanjs/VApps/app/routes/admin-users.server.routes.js",
+		"/Data/Development/code/meanjs/VApps/app/controllers/core.server.controller.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/users/views/signin.client.view.html",
+		"/Data/Development/code/meanjs/VApps/app/models/user.server.model.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/users/config/users.client.routes.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/core/views/header.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/views/user-edit.client.view.html",
+		"/Data/Development/Old/Code/git/VTS/app/models/user.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/controllers/admin-user.client.controller.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/views/admin-user.client.view.html",
+		"/Data/Development/code/meanjs/VApps/app/routes/projects.server.routes.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/services/users.client.service.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/config/admin-user.client.routes.js",
+		"/Data/Development/code/meanjs/VApps/app/controllers/users.server.controller.js",
+		"/Data/Development/code/meanjs/VApps/app/routes/users.server.routes.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/controllers/projects.client.controller.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/views/user-add.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/list-projects.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/users/controllers/settings.client.controller.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/users/services/authentication.client.service.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/users/services/users.client.service.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/admin-user/admin-user.client.module.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/manage-panels.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/users/users.client.module.js",
+		"/Data/Development/code/meanjs/VApps/app/controllers/COMMIT_EDITMSG.COMMIT_EDITMSG",
+		"/Data/Development/code/meanjs/VApps/app/models/project.server.model.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/edit-project.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/create-project.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/css/project.css",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/view-project.client.view.html",
 		"/Data/Development/code/meanjs/VApps/config/env/all.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/core/services/underscore.client.service.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/core/core.client.module.js",
+		"/Data/Development/code/meanjs/VApps/bower.json",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/manage-panelTypes.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/config/projects.client.routes.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/users/views/signup.client.view.html",
+		"/Data/Development/code/meanjs/VApps/public/modules/core/views/home.client.view.html",
+		"/Data/Development/code/meanjs/VApps-old/public/modules/core/views/home.html",
+		"/Data/Development/code/meanjs/VApps-old/app/views/index.html",
+		"/Data/Development/code/meanjs/VApps-old/public/modules/core/views/header.html",
+		"/Data/Development/code/meanjs/VApps-old/public/modules/projects/views/list.html",
+		"/Data/Development/code/meanjs/VApps-old/public/modules/projects/views/view.html",
+		"/Data/Development/code/meanjs/VApps-old/app/views/layout.html",
+		"/Data/Development/code/meanjs/VApps/public/lib/AngularJS-Toaster/toaster.js",
+		"/Data/Development/code/meanjs/VApps/config/express.js",
+		"/Data/Development/code/meanjs/VApps/public/config.js",
+		"/home/srin/.config/sublime-text-3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"//Data/Development/code/meanjs/VApps-old/public/modules/projects/config/routes.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/projects.client.module.js",
+		"/Data/Development/code/meanjs/VApps/public/modules/projects/config/projects.client.config.js",
 		"/Data/Development/code/meanjs/test1/public/modules/projects/config/projects.client.config.js",
 		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/view.html",
 		"/Data/Development/code/meanjs/VApps/public/modules/projects/views/list.html",
@@ -95,9 +208,7 @@
 		"/Data/Development/Old/Code/git/VTS/public/views/transaction/edit.html",
 		"/Data/Development/code/meanjs/VApps/public/modules/core/views/header.html",
 		"/Data/Development/code/meanjs/VApps/public/js/config.js",
-		"/home/srin/.config/sublime-text-3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
 		"/Data/Development/code/meanjs/VApps/app/views/layout.html",
-		"/Data/Development/code/meanjs/VApps/bower.json",
 		"/home/srin/.config/sublime-text-3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
 		"/Data/Development/Old/Code/git/VTS/app/models/transaction.js",
 		"/Data/Development/Old/Code/git/VTS/app/models/internalTransfer.js",
@@ -141,39 +252,22 @@
 		"/Data/Development/code/VApps/packages/stock/public/controllers/transactions.js",
 		"/Data/Development/code/VApps/packages/stock/public/controllers/stocks.js",
 		"/Data/Development/code/VApps/packages/stock/app.js",
-		"/Data/Development/code/VApps/public/system/controllers/header.js",
-		"/Data/Development/code/VApps/packages/stock/server/routes/stock.js",
-		"/Data/Development/code/VApps/public/articles/controllers/articles.js",
-		"/Data/Development/code/VApps/packages/stock/server/models/stock.js",
-		"/Data/Development/code/VApps/server/config/passport.js",
-		"/Data/Development/code/VApps/packages/stock/server/models/boxTransfer.js",
-		"/Data/Development/code/VApps/packages/stock/server/models/transaction.js",
-		"/Data/Development/code/VApps/packages/stock/server/models/internalTransfer.js",
-		"/Data/Development/code/VApps/packages/stock/server/common/params.js",
-		"/Data/Development/code/VApps/server/routes/users.js",
-		"/Data/Development/code/VApps/packages/stock/package.json",
-		"/Data/Development/code/VApps/public/auth/views/index.html",
-		"/Data/Development/code/VApps/server/views/users/auth.html",
-		"/Data/Development/code/VApps/server/config/env/test.js",
-		"/Data/Development/code/VApps/server/config/env/production.js",
-		"/Data/Development/code/VApps/server/config/env/development.js",
-		"/Data/Development/code/VApps/server/config/env/all.js",
-		"/Data/Development/code/VApps/server/config/system/bootstrap.js",
-		"/Data/Development/code/VApps/bower.json",
-		"/Data/Development/code/VApps/README.md",
-		"/Data/Development/code/VApps/package.json",
-		"/Data/Development/code/VApps/server/views/includes/head.html",
-		"/Data/Development/code/VApps/public/system/views/header.html"
+		"/Data/Development/code/VApps/public/system/controllers/header.js"
 	],
 	"find":
 	{
-		"height": 63.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
 		"height": 93.0,
 		"where_history":
 		[
+			"/Data/Development/code/meanjs/VApps/public/modules/",
+			"/Data/Development/code/meanjs/VApps/public/modules/projects/",
+			"/Data/Development/code/meanjs/VApps/public",
+			"/Data/Development/code/meanjs/VApps",
+			"/Data/Development/code/meanjs/VApps/app",
 			"/Data/Development/code/meanjs/public",
 			"/Data/Development/code/VTS/public",
 			"/Data/Development/code/VApps/public,/Data/Development/code/VApps/server",
@@ -185,6 +279,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"animate",
+			"updateReferencesAndUsage",
+			"removeUsageBoard",
+			"removeUsageEB",
+			"addUsageEB",
+			"addUsageBoard",
+			"/settings/accounts",
+			"populateTypeCode",
+			"_",
+			"console.log",
+			"populateTypeCode",
+			"Cons",
+			"populatePanelTypeCode",
+			"getPanelType",
+			"newEBTypes",
+			"newEBPanelsForm",
+			"newPanelTypesForm",
+			"getGlobbedFiles",
+			"jsFiles",
 			"get",
 			"newPanelTypesForm",
 			"addRoom",
@@ -207,6 +320,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"updateReferencesAndUsage",
+			"newEBTypesForm",
+			"newEBTypes",
+			"newEBPanelsForm",
 			"newPanelsForm",
 			""
 		],
@@ -219,8 +336,126 @@
 	"groups":
 	[
 		{
+			"selected": 3,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "public/modules/admin-user/views/admin-user.client.view.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1371,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								252,
+								252
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/modules/admin-user/css/admin-user.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 91,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"auto_name": ".gridStyle {",
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/modules/admin-user/controllers/admin-user.client.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2608,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								489,
+								489
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/modules/admin-user/admin-user.client.module.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 133,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								103,
+								103
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -300,7 +535,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 236.0,
+	"side_bar_width": 288.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

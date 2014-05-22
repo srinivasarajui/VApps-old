@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/vapps-test',
+	db: 'mongodb://test:test@oceanic.mongohq.com:10028/app25430667',
 	port: 3001,
 	app: {
 		title: 'VApps - Test Environment'

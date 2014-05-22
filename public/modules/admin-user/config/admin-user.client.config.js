@@ -7,7 +7,7 @@ angular.module('admin-user').run(['Menus', 'Authentication', '_',
         // ...
 
         if (Authentication.user) {
-        	console.log(Authentication.user.roles);
+   
             if (_.find(Authentication.user.roles, function(role) {
                 return role === 'ADMIN';
             })) {

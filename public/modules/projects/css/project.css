@@ -1,6 +1,6 @@
 .animate-enter {
-	-webkit-transition: 1s linear all; /* Chrome */
-	transition: 1s linear all;
+	-webkit-transition: 10s linear all; /* Chrome */
+	transition: 10s linear all;
 	opacity: 0;
 }
  
@@ -16,8 +16,8 @@
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter,
 .animate-repeat.ng-leave {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+  -webkit-transition:all linear 5s;
+  transition:all linear 5s;
 }
 
 .animate-repeat.ng-leave.ng-leave-active,
@@ -26,7 +26,11 @@
   opacity:0;
   max-height:0;
 }
-
+.animate-repeat.ng-leave.ng-leave-active-stagger,
+.animate-repeat.ng-move-stagger,
+.animate-repeat.ng-enter-stagger {
+  transition-delay:1s;
+}
 .animate-repeat.ng-leave,
 .animate-repeat.ng-move.ng-move-active,
 .animate-repeat.ng-enter.ng-enter-active {

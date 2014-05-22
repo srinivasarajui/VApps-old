@@ -92,8 +92,8 @@
                     </tr>
 
                 </tfoot>
-                <tbody>
-                    <tr ng-repeat="ebType in project.ebTypes" ng-animate="'animate'" >
+                <tbody ng-animate="'animate'">
+                    <tr ng-repeat="ebType in project.ebTypes"  >
                         <td>{{ebType.code}}</td>
                         <td>{{getThicknessText(ebType.l1Thickness)}}</td>
                         <td>{{ebType.l1Color}}</td>
