@@ -40,9 +40,9 @@ angular.module('projects').controller('ProjectsController', ['$scope', '$statePa
                     }
                 }
             } else {
-                console.log('Found');
+
                 $scope.project.$remove(function() {
-                    console.log('Remove');
+
                     $location.path('projects');
                 });
             }

@@ -14,7 +14,7 @@ angular.module('admin-user').controller('AdminUserController', ['$scope','$state
 
         // Find existing Project
         $scope.findOne = function() {
-            console.log( $stateParams.userId);
+
             AdminUsers.get({
                 userId: $stateParams.userId
             }, function(user) {
@@ -57,9 +57,9 @@ angular.module('admin-user').controller('AdminUserController', ['$scope','$state
                     }
                 }
             } else {
-                console.log('Found');
+               
                 $scope.user.$remove(function() {
-                    console.log('Remove');
+
                     $location.path('admin-user');
                 });
             }

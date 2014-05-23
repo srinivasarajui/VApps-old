@@ -158,7 +158,7 @@ exports.hasAuthorization = function(req, res, next) {
 	if (req.project.user.id !== req.user.id) {
 		return res.send(403, 'User is not authorized');
 	}*/
-    console.log(req.user);
+    //console.log(req.user);
     
     if(!_.find(req.user.roles,function(role) {
   return role === 'ADMIN';
