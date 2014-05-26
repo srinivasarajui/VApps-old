@@ -18,6 +18,7 @@ angular.module('admin-user').controller('AdminUserController', ['$scope','$state
             AdminUsers.get({
                 userId: $stateParams.userId
             }, function(user) {
+                user.isAdmin = user.roles.indexOf('ADMIN') !==-1;
                $scope.credentials = user;
 
             });
@@ -31,7 +32,8 @@ angular.module('admin-user').controller('AdminUserController', ['$scope','$state
                 lastName: $scope.credentials.lastName,
                 email: $scope.credentials.email,
                 username: $scope.credentials.username,
-                password: $scope.credentials.password
+                password: $scope.credentials.password,
+                isAdmin: $scope.credentials.isAdmin
             });
 
             // Redirect after save

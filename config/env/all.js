@@ -15,6 +15,7 @@ module.exports = {
             css: [
                 'public/lib/bootstrap/dist/css/bootstrap.css',
                 'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+                'public/lib/ng-switcher/dist/ng-switcher.min.css',
                 'public/lib/AngularJS-Toaster/toaster.css'
             ],
             js: [
@@ -28,7 +29,8 @@ module.exports = {
                 'public/lib/angular-ui-utils/ui-utils.js',
                 'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
                 'public/lib/AngularJS-Toaster/toaster.js',
-                'public/lib/underscore/underscore.js'
+                'public/lib/underscore/underscore.js',
+                'public/lib/ng-switcher/dist/ng-switcher.min.js',
             ]
         },
         css: [

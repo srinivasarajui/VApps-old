@@ -44,7 +44,11 @@ exports.create = function(req, res) {
     user.displayName = user.firstName + ' ' + user.lastName;
     if(!user.roles)
     {
-        user.roles = ['user']
+        user.roles = ['user'];
+    }
+    if(user.isAdmin)
+    {
+        user.roles.push('ADMIN');
     }
     user.save(function(err) {
         if (err) {
@@ -64,6 +68,7 @@ exports.create = function(req, res) {
  * Show the current Admin user
  */
 exports.read = function(req, res) {
+    
     res.jsonp(req.cuser);
 };
 
@@ -78,6 +83,19 @@ exports.update = function(req, res) {
     // Add missing user fields
     user.provider = 'local';
     user.displayName = user.firstName + ' ' + user.lastName;
+    var adminIndex = user.roles.indexOf('ADMIN');
+    
+    if(user.isAdmin)
+    {
+        if(adminIndex===-1){
+        user.roles.push('ADMIN');
+    }
+    }else{
+     if(adminIndex!==-1){
+        user.roles.splice(adminIndex,1);
+    }   
+    }
+
     user.save(function(err) {
         if (err) {
             return res.send(400, {
