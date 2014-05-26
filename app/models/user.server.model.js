@@ -158,6 +158,7 @@ User.find().exec(function(err, users) {
             var admin = new User();
             admin.firstName = 'Admin';
             admin.lastName = 'Admin';
+            admin.displayName = 'Admin Admin';
             admin.password = 'password@1';
             admin.email='admin@vesar.in';
             admin.username='admin';
